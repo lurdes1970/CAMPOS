@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Quiz Interativo — Lisbon Revisited (1923)</title>
+  <style>
+    :root{--bg:#0f172a;--card:#0b1220;--accent:#9f7aea;--muted:#9aa4b2;--glass:rgba(255,255,255,0.04)}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;color:#e6eef8;background:linear-gradient(180deg,#071028 0%, #081424 60%);}
+    .wrap{max-width:900px;margin:36px auto;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);}
+    h1{margin:0 0 6px;font-size:20px}
+    p.lead{margin:6px 0 20px;color:var(--muted)}
+    .question{background:var(--card);padding:14px;border-radius:10px;margin-bottom:12px;border:1px solid rgba(255,255,255,0.03)}
+    .qhead{display:flex;justify-content:space-between;align-items:center}
+    .qnum{font-weight:600;color:var(--accent)}
+    .opts{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+    label.opt{display:flex;align-items:center;gap:10px;padding:8px;border-radius:8px;background:var(--glass);cursor:pointer;border:1px solid transparent}
+    label.opt input{accent-color:var(--accent)}
+    .controls{display:flex;gap:8px;align-items:center;margin-top:18px}
+    button{background:var(--accent);color:#051224;padding:10px 14px;border:none;border-radius:10px;font-weight:700;cursor:pointer}
+    button.secondary{background:transparent;color:#cfd9ef;border:1px solid rgba(255,255,255,0.04)}
+    .result{margin-top:16px;padding:12px;border-radius:10px;background:linear-gradient(90deg,rgba(159,122,234,0.08),transparent);font-weight:700}
+    .feedback{margin-top:8px;padding:10px;border-radius:8px;background:rgba(0,0,0,0.25);color:#dfe9ff}
+    .correct{color:#b7f3c9}
+    .wrong{color:#ffb3b3}
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+    .small{font-size:13px;color:var(--muted)}
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    @media(min-width:760px){.opts{flex-direction:row;flex-wrap:wrap}.opts label.opt{flex:1 1 calc(50% - 12px)}}
+  </style>
+</head>
+<body>
+  <main class="wrap" role="main">
+    <h1>Quiz Interativo — <span style="color:var(--accent)">Lisbon Revisited (1923)</span></h1>
+    <p class="lead">Autor: Fernando Pessoa (heterónimo Álvaro de Campos). Seleciona a resposta e clica em <strong>Verificar respostas</strong> para obter feedback automático.</p>
+
+    <form id="quiz">
+
+      <!-- Q1 -->
+      <section class="question" data-answer="c">
+        <div class="qhead"><div><span class="qnum">1.</span> <strong>O poema exprime sobretudo:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q1" value="a"> Um sentimento de alegria e pertença à cidade de Lisboa.</label>
+          <label class="opt"><input type="radio" name="q1" value="b"> Uma crítica social e política direta.</label>
+          <label class="opt"><input type="radio" name="q1" value="c"> Um profundo cansaço existencial e desejo de esquecimento.</label>
+          <label class="opt"><input type="radio" name="q1" value="d"> Uma nostalgia romântica do passado.</label>
+        </div>
+        <div class="feedback" aria-live="polite" hidden></div>
+      </section>
+
+      <!-- Q2 -->
+      <section class="question" data-answer="b">
+        <div class="qhead"><div><span class="qnum">2.</span> <strong>O sujeito poético dirige-se a Lisboa como se fosse:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q2" value="a"> Uma mãe carinhosa.</label>
+          <label class="opt"><input type="radio" name="q2" value="b"> Uma inimiga ou símbolo do passado que quer esquecer.</label>
+          <label class="opt"><input type="radio" name="q2" value="c"> Uma musa inspiradora.</label>
+          <label class="opt"><input type="radio" name="q2" value="d"> Um lugar sagrado de refúgio.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q3 -->
+      <section class="question" data-answer="b">
+        <div class="qhead"><div><span class="qnum">3.</span> <strong>O verso “Não quero nada de ti” revela:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q3" value="a"> O desejo de reconciliação.</label>
+          <label class="opt"><input type="radio" name="q3" value="b"> Uma recusa e afastamento emocional.</label>
+          <label class="opt"><input type="radio" name="q3" value="c"> Uma súplica de ajuda.</label>
+          <label class="opt"><input type="radio" name="q3" value="d"> Um pedido de amor.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q4 -->
+      <section class="question" data-answer="d">
+        <div class="qhead"><div><span class="qnum">4.</span> <strong>Qual destes temas <em>não</em> está presente no poema?</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q4" value="a"> A identidade fragmentada.</label>
+          <label class="opt"><input type="radio" name="q4" value="b"> A saudade do passado.</label>
+          <label class="opt"><input type="radio" name="q4" value="c"> O tédio e o desencanto.</label>
+          <label class="opt"><input type="radio" name="q4" value="d"> A celebração da modernidade.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q5 -->
+      <section class="question" data-answer="c">
+        <div class="qhead"><div><span class="qnum">5.</span> <strong>O sentimento dominante no poema é:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q5" value="a"> Esperança.</label>
+          <label class="opt"><input type="radio" name="q5" value="b"> Indiferença.</label>
+          <label class="opt"><input type="radio" name="q5" value="c"> Revolta e exaustão.</label>
+          <label class="opt"><input type="radio" name="q5" value="d"> Paz interior.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q6 -->
+      <section class="question" data-answer="b">
+        <div class="qhead"><div><span class="qnum">6.</span> <strong>Quando o eu lírico diz “Não quero nada”, ele expressa:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q6" value="a"> Um desejo de começar de novo.</label>
+          <label class="opt"><input type="radio" name="q6" value="b"> A renúncia total à vida e ao mundo.</label>
+          <label class="opt"><input type="radio" name="q6" value="c"> Um amor secreto por Lisboa.</label>
+          <label class="opt"><input type="radio" name="q6" value="d"> Um protesto político.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q7 -->
+      <section class="question" data-answer="a">
+        <div class="qhead"><div><span class="qnum">7.</span> <strong>O poema utiliza uma linguagem:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q7" value="a"> Simples e direta, com tom confessional.</label>
+          <label class="opt"><input type="radio" name="q7" value="b"> Rítmica e musical, cheia de metáforas românticas.</label>
+          <label class="opt"><input type="radio" name="q7" value="c"> Antiga e clássica.</label>
+          <label class="opt"><input type="radio" name="q7" value="d"> Humorística e leve.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q8 -->
+      <section class="question" data-answer="b">
+        <div class="qhead"><div><span class="qnum">8.</span> <strong>O estilo de Álvaro de Campos neste poema caracteriza-se por:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q8" value="a"> Exaltação otimista da civilização moderna.</label>
+          <label class="opt"><input type="radio" name="q8" value="b"> Melancolia e desencanto perante a vida.</label>
+          <label class="opt"><input type="radio" name="q8" value="c"> Misticismo religioso.</label>
+          <label class="opt"><input type="radio" name="q8" value="d"> Idealização do amor.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q9 (V/F) -->
+      <section class="question" data-answer="F">
+        <div class="qhead"><div><span class="qnum">9.</span> <strong>O poema reflete o desejo do sujeito de regressar às origens e reencontrar-se com Lisboa.</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q9" value="V"> Verdadeiro</label>
+          <label class="opt"><input type="radio" name="q9" value="F"> Falso</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q10 -->
+      <section class="question" data-answer="V">
+        <div class="qhead"><div><span class="qnum">10.</span> <strong>O eu lírico sente-se estrangeiro em si mesmo e na cidade.</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q10" value="V"> Verdadeiro</label>
+          <label class="opt"><input type="radio" name="q10" value="F"> Falso</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q11 -->
+      <section class="question" data-answer="V">
+        <div class="qhead"><div><span class="qnum">11.</span> <strong>A recusa repetida (“Não quero...”) reforça a ideia de negação e desilusão.</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q11" value="V"> Verdadeiro</label>
+          <label class="opt"><input type="radio" name="q11" value="F"> Falso</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q12 -->
+      <section class="question" data-answer="V">
+        <div class="qhead"><div><span class="qnum">12.</span> <strong>A linguagem do poema é marcada por ironia e desencanto.</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q12" value="V"> Verdadeiro</label>
+          <label class="opt"><input type="radio" name="q12" value="F"> Falso</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q13 -->
+      <section class="question" data-answer="b">
+        <div class="qhead"><div><span class="qnum">13.</span> <strong>O poema pertence à fase:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q13" value="a"> Sensacionista e futurista de Álvaro de Campos.</label>
+          <label class="opt"><input type="radio" name="q13" value="b"> Pessimista e introspectiva, marcada pelo desencanto.</label>
+          <label class="opt"><input type="radio" name="q13" value="c"> Ortónimo clássico de Fernando Pessoa.</label>
+          <label class="opt"><input type="radio" name="q13" value="d"> Neoclássica e simbolista.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <!-- Q14 -->
+      <section class="question" data-answer="c">
+        <div class="qhead"><div><span class="qnum">14.</span> <strong>A atitude do eu lírico perante o passado é de:</strong></div></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="q14" value="a"> Saudade.</label>
+          <label class="opt"><input type="radio" name="q14" value="b"> Indiferença.</label>
+          <label class="opt"><input type="radio" name="q14" value="c"> Rejeição.</label>
+          <label class="opt"><input type="radio" name="q14" value="d"> Reconciliação.</label>
+        </div>
+        <div class="feedback" hidden></div>
+      </section>
+
+      <div class="controls">
+        <div class="actions">
+          <button type="button" id="check">Verificar respostas</button>
+          <button type="button" id="showAnswers" class="secondary">Mostrar respostas corretas</button>
+          <button type="button" id="reset" class="secondary">Reiniciar</button>
+        </div>
+        <div style="margin-left:auto;display:flex;gap:10px;align-items:center"><span class="small">Pontuação:</span><div id="score" class="result">— / 14</div></div>
+      </div>
+
+    </form>
+
+    <footer>
+      <div class="small">Instruções: seleciona as respostas e clica em "Verificar respostas". O sistema indicará acertos/erros e um breve feedback. Podes incorporar este ficheiro no Google Sites (iframe) ou subir o HTML como ficheiro estático.</div>
+    </footer>
+  </main>
+
+  <script>
+    const quiz = document.getElementById('quiz');
+    const checkBtn = document.getElementById('check');
+    const scoreEl = document.getElementById('score');
+    const showBtn = document.getElementById('showAnswers');
+    const resetBtn = document.getElementById('reset');
+    const sections = Array.from(document.querySelectorAll('.question'));
+
+    const feedbackTexts = {
+      c1: 'O eu lírico manifesta cansaço, desencanto e desejo de apagar o passado — não alegria.',
+      c2: 'O tom é de afastamento e recriminação, por isso a cidade funciona como algo a rejeitar.',
+      c3: 'A frase sinaliza recusa e afastamento emocional, não súplica.',
+      c4: 'O poema não celebra a modernidade; antes, apresenta desencanto e nostalgia amarga.',
+      c5: 'O eu lírico mostra revolta e exaustão, não esperança.',
+      c6: '“Não quero nada” expressa renúncia e desejo de afastamento do mundo.',
+      c7: 'Linguagem directa e confessional é típica neste poema.',
+      c8: 'O tom predominante é melancolia e desencanto, típico de certas obras de Álvaro de Campos.'
+    };
+
+    function getSelectedAnswer(section){
+      const name = section.querySelector('input[type=radio]').name;
+      const checked = section.querySelector('input[type=radio]:checked');
+      return checked ? checked.value : null;
+    }
+
+    function setFeedback(section, correct, text){
+      const fb = section.querySelector('.feedback');
+      fb.hidden = false;
+      fb.innerHTML = correct ? '<span class="correct">✓ Correto</span> — ' + text : '<span class="wrong">✕ Errado</span> — ' + text;
+    }
+
+    checkBtn.addEventListener('click', ()=>{
+      let score = 0;
+      sections.forEach((sec, idx)=>{
+        const correct = sec.dataset.answer;
+        const sel = getSelectedAnswer(sec);
+        // Determine feedback message
+        let msg = '';
+        if (idx < 8){ // Q1-Q8: use feedbackTexts map
+          msg = feedbackTexts['c'+(idx+1)] || '';
+        } else if (idx >=8 && idx <=11){ // Q9-Q12 V/F
+          msg = 'Analisa a frase no contexto do poema: o eu lírico não busca regressar.';
+        } else if (idx === 12){ msg = 'Este poema pertence à fase mais pessimista e introspectiva do heterónimo.';
+        } else if (idx === 13){ msg = 'O eu lírico rejeita o passado mais do que o idealiza.'; }
+
+        if (sel === null){
+          setFeedback(sec, false, 'Não escolheste resposta — considera selecionar uma opção.');
+        } else if (sel === correct){
+          score += 1;
+          setFeedback(sec, true, msg);
+        } else {
+          // show correct option text
+          const correctLabel = Array.from(sec.querySelectorAll('label.opt')).find(l=>{
+            const inp = l.querySelector('input');
+            return inp && inp.value === correct;
+          });
+          const corrText = correctLabel ? correctLabel.textContent.trim() : 'Resposta correcta.';
+          setFeedback(sec, false, 'Resposta correcta: ' + corrText + ' — ' + msg);
+        }
+      });
+      scoreEl.textContent = score + ' / ' + sections.length;
+      // scroll to first feedback
+      const firstFb = document.querySelector('.feedback:not([hidden])');
+      if (firstFb) firstFb.scrollIntoView({behavior:'smooth',block:'center'});
+    });
+
+    showBtn.addEventListener('click', ()=>{
+      sections.forEach(sec=>{
+        const correct = sec.dataset.answer;
+        // Highlight correct option
+        Array.from(sec.querySelectorAll('label.opt')).forEach(l=>{
+          l.style.border = '1px solid transparent';
+          const inp = l.querySelector('input');
+          if (inp && inp.value === correct){
+            l.style.border = '2px dashed rgba(159,122,234,0.35)';
+          }
+        });
+      });
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+      quiz.reset();
+      sections.forEach(sec=>{
+        sec.querySelector('.feedback').hidden = true;
+        Array.from(sec.querySelectorAll('label.opt')).forEach(l=>{ l.style.border = '1px solid transparent'; });
+      });
+      scoreEl.textContent = '— / ' + sections.length;
+    });
+
+    // Accessibility: allow keyboard checking with Ctrl+Enter
+    document.addEventListener('keydown', (e)=>{
+      if (e.ctrlKey && e.key === 'Enter') checkBtn.click();
+    });
+
+    // Optionally: auto-save answers to localStorage so students can return
+    // (simple implementation)
+    const storageKey = 'quiz_lisbon_revisited_answers_v1';
+    // load
+    try{
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      if (Object.keys(saved).length){
+        Object.entries(saved).forEach(([k,v])=>{
+          const el = quiz.querySelector(`input[name="${k}"][value="${v}"]`);
+          if (el) el.checked = true;
+        });
+      }
+    }catch(e){/*ignore*/}
+    // save on change
+    quiz.addEventListener('change', ()=>{
+      const data = {};
+      sections.forEach(sec=>{
+        const name = sec.querySelector('input[type=radio]').name;
+        const sel = sec.querySelector('input[type=radio]:checked');
+        if (sel) data[name] = sel.value;
+      });
+      localStorage.setItem(storageKey, JSON.stringify(data));
+    });
+  </script>
+</body>
+</html>
